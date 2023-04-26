@@ -32,9 +32,23 @@
     <h1>Hello, Vue</h1>
 
     <div id="app">
+        <a v-bind:href="url" target="new">
+            <h1>Click here for search</h1>
+        </a>
+        <a :href="google" target="new">Click here for google</a>
+
+        <hr />
+
         <div v-if="showBooks">
+
             <h2>{{ title }}</h2>
             <p>{{ author }} - {{ age }}</p>
+            <ul>
+                <li v-for="book in books">
+                    <h3>{{ book.title }}</h3>
+                    <p>{{ book.author }}</p>
+                </li>
+            </ul>
         </div>
 
         <!-- <button v-on:click="age++">Increase age</button>
@@ -49,6 +63,8 @@
         <div v-show="showBooks">
             Currently showing books
         </div>
+
+        <hr />
 
         <div>
             <div class="box" @mouseover="handleEvent($event, 5)">
