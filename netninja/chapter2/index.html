@@ -9,15 +9,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style type="text/css">
-        .box {
+        body{
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto
+        }
+        p, h3, ul{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        li > img{
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+        li.fav{
+            background: #ff9ed2;
+            color:white;
+        }
+        /* .box {
             padding: 100px 0;
             width: 400px;
             text-align: center;
             background: #ddd;
             margin: 20px;
             display: inline-block;
-        }
-
+        } */
     </style>
 
 
@@ -41,10 +68,11 @@
 
         <div v-if="showBooks">
 
-            <h2>{{ title }}</h2>
-            <p>{{ author }} - {{ age }}</p>
+            <!-- <h2>{{ title }}</h2>
+                        <p>{{ author }} - {{ age }}</p> -->
             <ul>
-                <li v-for="book in books">
+                <li v-for="book in books" :class="{ fav: book.isFav }" @click="favBook($e, book)">
+                    <img :src="book.img" :alt="book.title" />
                     <h3>{{ book.title }}</h3>
                     <p>{{ book.author }}</p>
                 </li>
@@ -66,7 +94,7 @@
 
         <hr />
 
-        <div>
+        <div v-show="showBoxes">
             <div class="box" @mouseover="handleEvent($event, 5)">
                 mouseover
             </div>
