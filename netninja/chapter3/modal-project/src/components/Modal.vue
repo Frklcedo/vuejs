@@ -1,11 +1,23 @@
 <template>
-    <div class="blackdrop">
-        <div class="modal">
-            <h1>Modal title</h1>
-            <p>Modal content</p>
+    <div class="blackdrop" @click.self="closeModal">
+        <div class="modal" :class="{sale: theme=== 'sale' }">
+            <h1>{{ header }}</h1>
+            <p>{{ text }}</p>
         </div>
     </div>
 </template>
+
+<script>
+
+ export default {
+     props: [ 'header', 'text', 'theme' ],
+     methods: {
+         closeModal(){
+             this.$emit('close')
+         }
+     }
+ }
+</script>
 
 <style scoped>
 
@@ -31,5 +43,13 @@
  }
  .modal p{
      font-style: normal;
+ }
+
+ .modal.sale{
+     background: crimson;
+     color: white;
+ }
+ .modal.sale h1{
+     color: white;
  }
 </style>
