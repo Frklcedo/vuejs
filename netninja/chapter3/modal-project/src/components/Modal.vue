@@ -1,12 +1,13 @@
 <template>
     <div class="blackdrop">
         <div class="modal">
-            <p>modal content</p>
+            <h1>Modal title</h1>
+            <p>Modal content</p>
         </div>
     </div>
 </template>
 
-<style>
+<style scoped>
 
  .modal{
      max-width: 400px;
@@ -22,5 +23,13 @@
      background: rgba( 0,0,0,0.5 );
      width: 100%;
      height: 100%;
+ }
+ h1{
+     color: #03cfb4;
+     border: none;
+     padding: 0;
+ }
+ .modal p{
+     font-style: normal;
  }
 </style>
