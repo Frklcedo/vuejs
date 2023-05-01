@@ -9,7 +9,7 @@ const app = Vue.createApp({
       books: [
         {title: 'The Final Empire', author: 'Brandon Sanderson', img: 'assets/tfe.jpg', isFav: false},
         {title: 'Lord Of The Rings', author: 'Tolkien', img: 'assets/lotr.jpg', isFav: true},
-        {title: 'The Hobbit', author: 'Tolkien', img: 'assets/hobbit.jpg', isFav: false},
+        {title: 'The Hobbit', author: 'Tolkien', img: 'assets/hobbit.jpg', isFav: true},
         {title: 'La Vie Intellectuelle', author: 'Sertillanges', img: 'assets/lvi.jpg', isFav: true},
       ],
       age: 45,
@@ -39,6 +39,12 @@ const app = Vue.createApp({
       book.isFav = !book.isFav
     }
   },
+  computed: {
+    filteredBooks(){
+      return this.books.filter(book => book.isFav)
+    }
+  }
+
 })
 
 app.mount('#app')
