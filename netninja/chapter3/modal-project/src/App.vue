@@ -2,7 +2,7 @@
   <h1>{{ title }}</h1>
   <p>Welcome...</p>
   <div v-if="showModal">
-      <Modal theme="" @close="toggleModal">
+      <Modal theme="sale" @close="toggleModal">
           <h1>{{ header }}</h1>
           <p>{{ text }}</p>
           <template v-slot:links>
@@ -11,7 +11,17 @@
           </template>
       </Modal>
   </div>
+  <div v-if="showModalTwo">
+      <Modal theme="" @close="toggleModalTwo">
+          <h1>Newsletter</h1>
+          <p>Subscribe to get the latest news</p>
+          <template v-slot:links>
+              <a href="#">subscribe to newsletter</a>
+          </template>
+      </Modal>
+  </div>
   <button @click.alt="toggleModal">open modal (alt)</button>
+  <button @click="toggleModalTwo">open modal two</button>
 </template>
 
 <script>
@@ -27,7 +37,8 @@
        title: 'My first Vue App :)',
        header: 'Sign up for the Giveaway!',
        text: 'Grab your ninja swag for half price!',
-       showModal: false
+       showModal: false,
+       showModalTwo: false,
      }
    },
    methods: {
@@ -39,6 +50,9 @@
      },
      toggleModal(){
        this.showModal = !this.showModal
+     },
+     toggleModalTwo(){
+       this.showModalTwo = !this.showModalTwo
      }
    }
  }
