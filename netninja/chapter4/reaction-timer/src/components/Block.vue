@@ -1,9 +1,17 @@
+<template>
+    <div class="block" v-if="showBlock" @click="stopTimer">
+        <span>click me</span>
+    </div>
+</template>
+
 <script>
  export default {
      props: ['delay'],
      data(){
          return {
              showBlock: false,
+             timer: null,
+             reactionTime: 0
          }
      },
      mounted(){
@@ -13,23 +21,29 @@
          }, this.delay)
      },
      updated(){
+         this.startTimer()
          console.log(`component updated in ${ this.delay }ms`)
      },
      unmounted(){
          console.log('component unmounted')
+     },
+     methods: {
+         startTimer(){
+             this.timer = setInterval(() => {
+                 this.reactionTime += 10
+             }, 10)
+         },
+         stopTimer(){
+             clearInterval(this.timer),
+             this.$emit('end', this.reactionTime)
+         }
      }
  }
 </script>
 
-<template>
-    <div class="block" v-if="showBlock">
-        <span>click me</span>
-    </div>
-</template>
-
 <style>
  .block{
-     max-height: 400px;
+     max-width: 400px;
      border-radius: 20px;
      background-color: #0faf87;
      color: white;
