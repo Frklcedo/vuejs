@@ -12,30 +12,35 @@
             <option value="designer">Web Designer</option>
         </select>
 
+        <label>Skills: </label>
+        <input type="text" v-model="tempSkill" @keyup.alt="addSkill" />
+        <div v-for="skill in skills" :key="skill" class="pill">
+            {{ skill }}
+        </div>
+
         <div class="terms">
             <input type="checkbox" required v-model="terms" />
             <label >Accept terms and conditions</label>
         </div>
 
-        <div>
-            <input type="checkbox" value="shaun" v-model="names" />
-            <label >Shaun</label>
-        </div>
-        <div>
-            <input type="checkbox" value="frkl" v-model="names" />
-            <label >Frkl</label>
-        </div>
-        <div>
-            <input type="checkbox" value="tolkien" v-model="names" />
-            <label >Tolkien</label>
-        </div>
-
+        <!-- <div>
+             <input type="checkbox" value="shaun" v-model="names" />
+             <label >Shaun</label>
+             </div>
+             <div>
+             <input type="checkbox" value="frkl" v-model="names" />
+             <label >Frkl</label>
+             </div>
+             <div>
+             <input type="checkbox" value="tolkien" v-model="names" />
+             <label >Tolkien</label>
+             </div>
+        -->
     </form>
     <p>{{ email }}</p>
     <p>{{ password }}</p>
     <p>{{ role }}</p>
     <p>{{ terms }}</p>
-    <p>{{ names }}</p>
 </template>
 
 <script>
@@ -46,7 +51,20 @@
              password: '',
              role: 'developer',
              terms: false,
-             names: [],
+             tempSkill: '',
+             skills: [],
+
+             // names: [],
+         }
+     },
+     methods:{
+         addSkill(e){
+             if(e.key === ',' && this.tempSkill){
+                 if(!this.skills.includes(this.tempSkill)){
+                    this.skills.push(this.tempSkill)
+                 }
+                 this.tempSkill = ''
+             }
          }
      }
  }
